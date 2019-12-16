@@ -72,7 +72,7 @@ if ($stmt->num_rows > 0)
 		
 		//<script> alert(1); </script>
 		echo "<h3>".htmlspecialchars($Joke_question) ."</h3>";
-		echo "<div><p>".htmlspecialchars($Joke_answer)." | submitted by user ".$username." #".$userid."</p></div>";	
+		echo "<div><p>".htmlspecialchars($Joke_answer)." | submitted by user # ".$username."</p></div>";		
     }
 }
 else //if no rows selected, state 0 results

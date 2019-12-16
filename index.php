@@ -31,12 +31,6 @@ php tag
 
 //inserts other code from the referenced file to this file
 include "db_connection.php";
-/*
-session_start();
-
-error_reporting(E_ALL);
-ini_set('display_errors',1);
-*/
 
 //$nameo = $_SESSION['username'];
 //echo "<br>Logged In: ".$nameo."<br>";
@@ -51,10 +45,6 @@ ini_set('display_errors',1);
 <a href="../logout.php">Log Out</a><br>
 <a href="../signin.php">New User Sign Up</a><br><br>
 
-
-<?php
-		
-?>
 <!--
 
 <form action = "search_keyword.php">
@@ -99,27 +89,6 @@ ini_set('display_errors',1);
 	
 </form>
 -->
-<?php
-/*
-	if(!$_SESSION['username'])
-	{
-		echo "You Must Be Logged In To Enter A Joke.<br>";
-		
-		//link to login.php
-		//echo"<br><br><a href='login.php'>Login HERE</a>";
-		
-		//stop php file here
-		exit;	
-	}
-	*/
-	session_start();
-	
-	error_reporting(E_ALL);
-	ini_set('display_errors',1);
-
-	if(isset($_SESSION['userid'])):
-	echo "Currently Logged In:".$_SESSION['username']."<br>User ID ".$_SESSION['userid']."<br>";
-?>
 <form class="form-horizontal" action = "add_joke.php">
 <fieldset>
 
@@ -149,20 +118,6 @@ ini_set('display_errors',1);
 </div>
 </fieldset>
 </form>
-<?php
-	else:?>
-	
-	<div align="center">
-	<h3>Login</h3>
-	<div>You must login to add a joke</div>
-	<a href="login.php">Login Here</a>
-	</div>
-	
-
-
-<?php
-	endif;
-?>
 
 <?php
 //##################################################

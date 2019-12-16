@@ -2,12 +2,13 @@
 //typo errors
 error_reporting(E_ALL);
 ini_set('display_errors',1);
-echo "This is the google login page";
+
+//echo "This is the google login page";
 
 session_start();
 
 //use php file from google vendor folder
-require_once('vendor/autoload.php');
+require_once('vendor\autoload.php');
 
 //variables
 
@@ -17,7 +18,7 @@ $client_id = '178777007060-fj20pkuge2mpc1t4i681df78m8i42fdt.apps.googleuserconte
 $client_secret='EMqYHYupq5w-A0lv_cMuKk_w';
 //$client_secret='IuC0yg-f5LFH6dAwMe6iCWXE';
 
-$redirect_uri = 'http://localhost:8888/google_login.php';
+$redirect_uri = 'http://localhost:8888/index.php/google_login.php';
 //$redirect_uri = 'http://localhost:8888/jokesdb/google_login.php';
 
 
@@ -27,7 +28,7 @@ $db_password = "root";
 $host_name = "localhost";
 //$db_name = 'JokesDB';
 $db_name = 'test';
-$port = 8888;//unused previously, default 8888
+$port = 8889;//unused previously, default 8888
 ############################################################################################
 
 //create new google client object
@@ -40,8 +41,6 @@ $client->addScope("email");
 $client->addScope("profile");
 //authenticate client data
 $service = new Google_Service_Oauth2($client);
-
- 
 
 //if logout 
 if(isset($_GET['logout']))
@@ -57,10 +56,6 @@ if(isset($_GET['logout']))
 
 if(isset($_GET['code']))
 {
-	echo "Login from google sent us a code<br>";
-	
-	 
-	
 	//set access token to session variable
 	$client->authenticate($_GET['code']);
 	$_SESSION['access_token'] =  $client->getAccessToken();
@@ -93,7 +88,7 @@ else
 {
 	$user = $service->userinfo->get();
 	echo '<br><b>User Logged In</b><br>';
-
+}
 
 echo '<br><b>CHECK</b><br>';
 
@@ -106,7 +101,7 @@ if($mysqli->connect_error)
 	die('Connection Error: ('.$mysqli->connect_errno.')'.$mysqli->connect_error);
 }
 
-$result = $mysqli->query("Select COUNT(google_id) as usercount FROM google_users WHERE google_id=$user->id");
+$result = $mysqli->query("Select Count (google_id) as usercount from google_users where google_id = $user->id");
 $user_count = $result->fetch_object()->usercount;
 
 echo 'img src="'.$user->picture.'" style" float: right; margin-top 33px;" />';
@@ -129,7 +124,7 @@ else
 	//run command to insert data into database
 	$statement->execute();
 	echo $mysqli->error;
-}
+//}
 
 
 	echo "<p>Data about this user. <ul><li>Username: ". $user->name. "</li><li>user id: ".$user->id. "</li><li>email: ".$user->email."</li><li></p>";

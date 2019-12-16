@@ -35,13 +35,10 @@ $stmt = $mysqli->prepare("SELECT id, username, password FROM users where usernam
 $stmt->bind_param("ss",$username,$hash);
 $stmt->execute();
 $stmt->store_result();
-echo "DATA: <br><pre>";
+echo "<pre>";
 print_r($stmt);
 echo "</pre>";
 $stmt->bind_result($userid, $uname, $pw);
-echo "<br> Variable id: ".$userid."<br>";
-echo "<br> Variable uname: ".$uname."<br>";
-echo "<br> Variable pw: ".$pw."<br>";
 
 //$sql = "SELECT id, username, password FROM users where username = '$username' AND password = '$password'";
 //echo "<br><b>".$sql."</b><br>";
@@ -59,25 +56,15 @@ if ($stmt->num_rows > 0)
 {
 	//$row = $result->fetch_assoc();
 	$row = $stmt->fetch();
-	//echo "<br> Variable id: ".$userid."<br>";
+	
 	//set userid as value from id from table row
-	//$userid = $row['id'];
-	/*
-	echo "<br> Variable id: ".$userid."<br>";
-	echo "<br> Variable uname: ".$uname."<br>";
-	echo "<br> Variable pw: ".$pw."<br>";
-	*/
-	//echo "Login Successful <br><br> USER #".$uname."<br>";
-	//echo "Login Successful CHECK NAME: ".$username."<br><br> USER #".$row['username'];
-	//echo "Login Successful CHECK ID<br><br> USER #".$row['id'];
+	$userid = $row['id'];
+	echo "Login Successful <br><br> USER #".$userid."<br>";
+	echo "Login Successful CHECK NAME<br><br> USER #".$row['username'];
+	echo "Login Successful CHECK ID<br><br> USER #".$row['id'];
 	//set session variables as the values from the other variables
 	$_SESSION['username']=$uname;
 	$_SESSION['userid']=$userid;
-	
-	echo "<br> Variable id: ".$userid."<br>";
-	echo "<br> Variable uname: ".$uname."<br>";
-	echo "<br> Variable pw: ".$pw."<br>";
-	
 }
 else //if no rows selected, state 0 results
 {

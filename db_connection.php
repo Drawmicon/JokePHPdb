@@ -5,7 +5,7 @@ $host = "localhost";
 $username = "root";
 $user_pass = "root";
 $database_in_use="test";
-$port = 8888;
+$port = 8889;
 
 //link to database
 $mysqli = new mysqli($host, $username, $user_pass, $database_in_use, $port);

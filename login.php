@@ -23,7 +23,7 @@ include "db_connection.php";
 
 <hr>
 
-<form class="form-horizontal" action = "process_login_secure.php" method = "post">
+<form class="form-horizontal" action = "process_login.php" method = "post">
 <fieldset>
 
 <legend> Site Login </legend>
